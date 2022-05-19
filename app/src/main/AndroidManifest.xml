@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.examenrecuperacion">
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="${AIzaSyAAkhNYv1D3Zwl2AtjTd8OO-QMag0mK_KU}" />
+
 
     <application
         android:allowBackup="true"

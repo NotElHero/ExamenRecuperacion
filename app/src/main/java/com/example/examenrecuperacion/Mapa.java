@@ -1,12 +1,14 @@
 package com.example.examenrecuperacion;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class Mapa extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Mapa extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map);
     }
 }

@@ -3,6 +3,7 @@ package com.example.examenrecuperacion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,11 +21,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Map;
+
 public class Matricula extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     EditText nombre, apellidos, email;
     Button matricular, volver;
-
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +48,11 @@ public class Matricula extends AppCompatActivity implements View.OnClickListener
         Spinner curso = findViewById(R.id.spinner);
         curso.setOnItemSelectedListener(this);
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Matricula.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, cursos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Matricula.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, cursos);
         curso.setAdapter(adapter);
 
+        db = openOrCreateDatabase("lista", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS lista(Nombre TEXT PRIMARY KEY, Apellidos TEXT, Email TEXT, Curso INTEGER);");
     }
 
         @Override
@@ -87,8 +91,14 @@ public class Matricula extends AppCompatActivity implements View.OnClickListener
             creador.show();
             return true;
         } else if (id == R.id.itemMapa){
-            //Intent mapa = new Intent()
+            Intent mapa = new Intent(this, Mapa.class);
+            startActivity(mapa);
         }
         return super.onOptionsItemSelected(item);
     }
+    /*public void matriculado(){
+        db.execSQL("INSERT INTO lista VALUES (NULL,'"+tiempoFin+"')");
+        System.out.println("Alumno añadido");
+        db.close();
+    } */
 }
